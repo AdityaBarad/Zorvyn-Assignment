@@ -1,0 +1,7 @@
+CREATE TABLE roles (
+    created_at TIMESTAMP DEFAULT NOW(),
+    name VARCHAR(50) UNIQUE NOT NULL,
+    id BIGSERIAL PRIMARY KEY
+);
+
+
