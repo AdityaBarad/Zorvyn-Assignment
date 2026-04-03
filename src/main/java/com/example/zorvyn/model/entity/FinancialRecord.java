@@ -74,4 +74,3 @@ public class FinancialRecord {
         updatedAt = LocalDateTime.now();
     }
 }
-
