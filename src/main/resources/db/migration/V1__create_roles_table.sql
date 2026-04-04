@@ -4,4 +4,3 @@ CREATE TABLE roles (
     id BIGSERIAL PRIMARY KEY
 );
 
-

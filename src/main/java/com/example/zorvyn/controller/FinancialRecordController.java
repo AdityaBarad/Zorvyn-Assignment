@@ -44,7 +44,7 @@ public class FinancialRecordController {
     private final FinancialRecordService recordService;
 
     @PostMapping
-    @PreAuthorize("hasAnyRole('ADMIN','ANALYST')")
+    @PreAuthorize("hasRole('ADMIN')")
     @Operation(summary = "Create financial record")
     @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "201", description = "Record created")
     @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "400", description = "Validation error", content = @Content)
@@ -59,7 +59,7 @@ public class FinancialRecordController {
     }
 
     @GetMapping
-    @PreAuthorize("hasAnyRole('ADMIN','ANALYST','VIEWER')")
+    @PreAuthorize("hasAnyRole('ADMIN','ANALYST')")
     @Operation(summary = "Get records with optional filters and pagination",
             description = "Filter by type, category, startDate, endDate. Dates format: yyyy-MM-dd")
     @Parameter(name = "type", description = "INCOME or EXPENSE")
@@ -78,7 +78,7 @@ public class FinancialRecordController {
     }
 
     @GetMapping("/{id}")
-    @PreAuthorize("hasAnyRole('ADMIN','ANALYST','VIEWER')")
+    @PreAuthorize("hasAnyRole('ADMIN','ANALYST')")
     @Operation(summary = "Get record by ID")
     @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "200", description = "Record found")
     @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "404", description = "Record not found", content = @Content)
@@ -90,7 +90,7 @@ public class FinancialRecordController {
     }
 
     @PutMapping("/{id}")
-    @PreAuthorize("hasAnyRole('ADMIN','ANALYST')")
+    @PreAuthorize("hasRole('ADMIN')")
     @Operation(summary = "Update financial record")
     @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "200", description = "Record updated")
     @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "404", description = "Record not found", content = @Content)
