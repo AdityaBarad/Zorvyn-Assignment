@@ -43,7 +43,7 @@ public class DashboardServiceImpl implements DashboardService {
             totalExpenses = BigDecimal.ZERO;
         }
         BigDecimal netBalance = totalIncome.subtract(totalExpenses);
-        long count = recordRepository.count();
+        long count = recordRepository.countByDeletedAtIsNull();
         return new DashboardSummaryResponse(totalIncome, totalExpenses,
                 netBalance, count, LocalDateTime.now());
     }
@@ -97,7 +97,7 @@ public class DashboardServiceImpl implements DashboardService {
         Pageable pageable = PageRequest.of(0, safeLimit,
                 Sort.by(Sort.Direction.DESC, "createdAt"));
         return recordMapper.toResponseList(
-                recordRepository.findAll(pageable).getContent());
+                recordRepository.findAllByDeletedAtIsNull(pageable).getContent());
     }
 }
 

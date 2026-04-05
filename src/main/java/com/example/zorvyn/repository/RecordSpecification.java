@@ -37,5 +37,9 @@ public class RecordSpecification {
         return (root, query, cb) ->
                 userId == null ? null : cb.equal(root.get("createdBy").get("id"), userId);
     }
+
+    public static Specification<FinancialRecord> notDeleted() {
+        return (root, query, cb) -> cb.isNull(root.get("deletedAt"));
+    }
 }
 

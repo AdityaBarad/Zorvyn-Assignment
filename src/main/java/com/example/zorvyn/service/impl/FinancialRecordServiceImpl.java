@@ -61,7 +61,7 @@ public class FinancialRecordServiceImpl implements FinancialRecordService {
     @Override
     @Transactional(readOnly = true)
     public FinancialRecordResponse getRecordById(Long id) {
-        FinancialRecord record = recordRepository.findById(id)
+        FinancialRecord record = recordRepository.findByIdAndDeletedAtIsNull(id)
                 .orElseThrow(() -> new ResourceNotFoundException("FinancialRecord", id));
         return recordMapper.toResponse(record);
     }
@@ -76,7 +76,8 @@ public class FinancialRecordServiceImpl implements FinancialRecordService {
         }
 
         Specification<FinancialRecord> spec = Specification
-                .where(RecordSpecification.byType(filter.getType()))
+                .where(RecordSpecification.notDeleted())
+                .and(RecordSpecification.byType(filter.getType()))
                 .and(RecordSpecification.byCategory(filter.getCategory()))
                 .and(RecordSpecification.byDateBetween(filter.getStartDate(), filter.getEndDate()));
 
@@ -91,7 +92,7 @@ public class FinancialRecordServiceImpl implements FinancialRecordService {
     @Override
     @Transactional
     public FinancialRecordResponse updateRecord(Long id, UpdateRecordRequest request) {
-        FinancialRecord record = recordRepository.findById(id)
+        FinancialRecord record = recordRepository.findByIdAndDeletedAtIsNull(id)
                 .orElseThrow(() -> new ResourceNotFoundException("FinancialRecord", id));
 
         if (request.getAmount() != null) {
@@ -118,7 +119,7 @@ public class FinancialRecordServiceImpl implements FinancialRecordService {
     @Override
     @Transactional
     public void deleteRecord(Long id) {
-        FinancialRecord record = recordRepository.findById(id)
+        FinancialRecord record = recordRepository.findByIdAndDeletedAtIsNull(id)
                 .orElseThrow(() -> new ResourceNotFoundException("FinancialRecord", id));
         record.setDeletedAt(LocalDateTime.now());
         recordRepository.save(record);

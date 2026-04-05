@@ -93,16 +93,16 @@ docker-compose up --build
 | Endpoint                   | VIEWER | ANALYST | ADMIN |
 |---------------------------|--------|---------|-------|
 | POST /auth/login           |   ✓    |    ✓    |   ✓   |
-| GET /records               |   ✓    |    ✓    |   ✓   |
-| GET /records/{id}          |   ✓    |    ✓    |   ✓   |
-| POST /records              |   ✗    |    ✓    |   ✓   |
-| PUT /records/{id}          |   ✗    |    ✓    |   ✓   |
+| GET /records               |   ✗    |    ✓    |   ✓   |
+| GET /records/{id}          |   ✗    |    ✓    |   ✓   |
+| POST /records              |   ✗    |    ✗    |   ✓   |
+| PUT /records/{id}          |   ✗    |    ✗    |   ✓   |
 | DELETE /records/{id}       |   ✗    |    ✗    |   ✓   |
 | GET /dashboard/summary     |   ✓    |    ✓    |   ✓   |
 | GET /dashboard/recent      |   ✓    |    ✓    |   ✓   |
 | GET /dashboard/categories  |   ✗    |    ✓    |   ✓   |
 | GET /dashboard/trends/{y}  |   ✗    |    ✓    |   ✓   |
-| GET /users/{id}            |   ✗    |    ✓    |   ✓   |
+| GET /users/{id}            |   ✗    |    ✗    |   ✓   |
 | GET /users                 |   ✗    |    ✗    |   ✓   |
 | POST /users                |   ✗    |    ✗    |   ✓   |
 | PUT /users/{id}            |   ✗    |    ✗    |   ✓   |

@@ -136,7 +136,7 @@ class FinancialRecordServiceTest {
     @Test
     void getRecordById_whenNotFound_throwsException() {
         // given
-        when(recordRepository.findById(404L)).thenReturn(Optional.empty());
+        when(recordRepository.findByIdAndDeletedAtIsNull(404L)).thenReturn(Optional.empty());
 
         // when
         // then
