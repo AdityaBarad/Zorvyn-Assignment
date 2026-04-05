@@ -37,7 +37,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @WebMvcTest(FinancialRecordController.class)
 @AutoConfigureMockMvc(addFilters = false)
-@Import(GlobalExceptionHandler.class)
+@Import({GlobalExceptionHandler.class, com.example.zorvyn.config.SecurityConfig.class})
 class FinancialRecordControllerTest {
 
     @Autowired
@@ -215,3 +215,4 @@ class FinancialRecordControllerTest {
         verifyNoInteractions(recordService);
     }
 }
+
